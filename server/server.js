@@ -10,6 +10,11 @@ dotenv.config();
 // require/import mongoose
 
 const mongoose = require("mongoose");
+
+// require router
+
+const authRouter = require("./routes/auth.routes");
+
 // app
 const app = express();
 
@@ -22,11 +27,17 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-// endpoint
+// middleware
 
-app.get("/hi", (req, res) => {
-  return res.send("<h1>Hello World!</h1>");
-});
+app.use("/api", authRouter);
+
+// app.get("/hi", (req, res) => {
+//   return res.send("<h1>Hello World!</h1>");
+// });
+
+// create endpoint to store user in db
+
+app.use(express.json());
 
 // setup server
 

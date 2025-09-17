@@ -1,0 +1,35 @@
+// controller functions
+
+// require User model
+const User = require("../models/user.model");
+
+// signup function
+
+const signup = async (req, res) => {
+  try {
+    // logic
+
+    const { username, email, password } = req.body;
+    // validate
+
+    // check whether user exists
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+    // new resource
+
+    const newUser = await User({
+      username,
+      email,
+      password,
+    });
+    // save
+    await newUser.save();
+  } catch (err) {
+    console.log("err", err);
+  }
+};
+
+module.exports = { signup };
