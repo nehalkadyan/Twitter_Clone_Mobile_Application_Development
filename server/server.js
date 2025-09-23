@@ -18,6 +18,8 @@ const authRouter = require("./routes/auth.routes");
 // app
 const app = express();
 
+app.use(express.json());
+
 // connect to db
 
 mongoose
