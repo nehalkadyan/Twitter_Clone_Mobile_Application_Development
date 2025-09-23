@@ -1,10 +1,10 @@
-import { View, Text, TextInput, Image } from "react-native";
+import { View, Text, TextInput, Image, Pressable } from "react-native";
 import React from "react";
 
 const signup = () => {
   return (
     <View style={{ backgroundColor: "black", flex: 1 }}>
-      <View style={{ alignItems: "center", margin: 20 }}>
+      <View style={{ alignItems: "center", marginTop: 20 }}>
         <Image
           style={{ height: 80, width: 80 }}
           source={{
@@ -13,7 +13,7 @@ const signup = () => {
         />
       </View>
 
-      <View style={{ alignItems: "center" }}>
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <View
           style={{
             backgroundColor: "white",
@@ -28,19 +28,66 @@ const signup = () => {
               fontSize: 20,
               fontWeight: 700,
               fontStyle: "italic",
+              margin: 15,
             }}
           >
             Sign Up!
           </Text>
           <View style={{ alignItems: "center" }}>
             <TextInput
-              style={{ padding: 15, borderWidth: 1, borderColor: "red" }}
+              style={{
+                padding: 15,
+                borderWidth: 1,
+                borderColor: "black",
+                borderRadius: 10,
+                outline: "none",
+                fontSize: 18,
+                color: "gray",
+              }}
               placeholder="Username"
             />
 
-            <TextInput placeholder="Email" />
+            <TextInput
+              style={{
+                padding: 15,
+                borderWidth: 1,
+                borderColor: "black",
+                borderRadius: 10,
+                outline: "none",
+                fontSize: 18,
+                color: "gray",
+                marginVertical: 15,
+              }}
+              placeholder="Email"
+            />
 
-            <TextInput placeholder="Password" />
+            <TextInput
+              style={{
+                padding: 15,
+                borderWidth: 1,
+                borderColor: "black",
+                borderRadius: 10,
+                outline: "none",
+                fontSize: 18,
+                color: "gray",
+              }}
+              placeholder="Password"
+            />
+
+            <Pressable
+              style={{
+                backgroundColor: "black",
+                margin: 14,
+                borderRadius: 10,
+                width: "50%",
+              }}
+            >
+              <Text
+                style={{ color: "white", padding: 10, textAlign: "center" }}
+              >
+                Sign up
+              </Text>
+            </Pressable>
           </View>
         </View>
       </View>
