@@ -1,7 +1,36 @@
 import { View, Text, TextInput, Image, Pressable } from "react-native";
-import React from "react";
+
+import React, { useState } from "react";
+
+import axios from "axios";
 
 const signup = () => {
+  // states
+
+  const [username, setUsername] = useState("");
+
+  const [email, setEmail] = useState("");
+
+  const [password, setPassword] = useState("");
+
+  console.log("Username", username, "Email", email, "password", password);
+
+  // function for signup
+
+  const handleSignUp = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/api/signup", {
+        username,
+        email,
+        password,
+      });
+
+      console.log("Response from backend :", response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <View style={{ backgroundColor: "black", flex: 1 }}>
       <View style={{ alignItems: "center", marginTop: 20 }}>
@@ -35,6 +64,7 @@ const signup = () => {
           </Text>
           <View style={{ alignItems: "center" }}>
             <TextInput
+              onChangeText={setUsername}
               style={{
                 padding: 15,
                 borderWidth: 1,
@@ -48,6 +78,7 @@ const signup = () => {
             />
 
             <TextInput
+              onChangeText={setEmail}
               style={{
                 padding: 15,
                 borderWidth: 1,
@@ -62,6 +93,7 @@ const signup = () => {
             />
 
             <TextInput
+              onChangeText={setPassword}
               style={{
                 padding: 15,
                 borderWidth: 1,
@@ -75,6 +107,7 @@ const signup = () => {
             />
 
             <Pressable
+              onPress={handleSignUp}
               style={{
                 backgroundColor: "black",
                 margin: 14,

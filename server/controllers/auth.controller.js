@@ -2,6 +2,7 @@
 
 // require User model
 const User = require("../models/user.model");
+const bcrypt = require("bcryptjs");
 
 // signup function
 
@@ -20,10 +21,12 @@ const signup = async (req, res) => {
     }
     // new resource
 
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const newUser = await User({
       username,
       email,
-      password,
+      password: hashedPassword,
     });
     // save
     await newUser.save();
