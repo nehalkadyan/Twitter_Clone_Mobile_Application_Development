@@ -3,8 +3,14 @@ import { View, Text, TextInput, Image, Pressable } from "react-native";
 import React, { useState } from "react";
 
 import axios from "axios";
+import { useRouter } from "expo-router";
 
 const signup = () => {
+
+  // router
+
+  const router = useRouter()
+
   // states
 
   const [username, setUsername] = useState("");
@@ -19,13 +25,17 @@ const signup = () => {
 
   const handleSignUp = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/signup", {
+      const response = await axios.post("http://localhost:5001/api/signup", {
         username,
         email,
         password,
       });
 
       console.log("Response from backend :", response.data);
+
+      if(response.data.user){
+        return router.replace("/auth/screens/signin")
+      }
     } catch (err) {
       console.log(err);
     }
@@ -121,6 +131,14 @@ const signup = () => {
                 Sign up
               </Text>
             </Pressable>
+
+            <View style = {{flexDirection : "row", gap: 10, padding: 15}}>
+               <Text>Don't have an account?</Text>
+
+               <Pressable onPress={() => router.push("/auth/screens/signin")}>
+                  <Text style = {{color : "blue"}}>Sign In</Text>
+               </Pressable>
+            </View>
           </View>
         </View>
       </View>

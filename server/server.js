@@ -11,6 +11,9 @@ dotenv.config();
 
 const mongoose = require("mongoose");
 
+// cors
+
+const cors = require("cors")
 // require router
 
 const authRouter = require("./routes/auth.routes");
@@ -18,6 +21,13 @@ const authRouter = require("./routes/auth.routes");
 // app
 const app = express();
 
+const corsOptions = {
+  origin : "http://localhost:8081",
+  methods: ["GET", "POST", "PUT", "DELETE"]
+  
+}
+
+app.use(cors(corsOptions))
 app.use(express.json());
 
 // connect to db
@@ -44,7 +54,7 @@ app.use(express.json());
 // setup server
 
 app.listen(process.env.PORT, () => {
-  console.log("Server is running on port 5000");
+  console.log("Server is running on port 5001");
 });
 
 // auRuIyueQEau4XCH
