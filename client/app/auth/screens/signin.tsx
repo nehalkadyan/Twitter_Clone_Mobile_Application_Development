@@ -1,4 +1,5 @@
 import { View, Text, TextInput, Image, Pressable } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 import React, { useState } from "react";
 
@@ -6,17 +7,13 @@ import axios from "axios";
 import { useRouter } from "expo-router";
 
 const signin = () => {
-
   // router
-
   const router = useRouter()
-
   // states
 
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
-
 
   // function for signup
 
@@ -28,6 +25,18 @@ const signin = () => {
       });
 
       console.log("Response from backend :", response.data);
+
+      // token 
+
+      const token = response.data.token;
+
+      // save the token in async storage if token is received
+      if(token){
+      await AsyncStorage.setItem("access_token", token);
+      }
+
+      router.replace("/tabs/home_tab")
+
     } catch (err) {
       console.log(err);
     }
@@ -66,7 +75,6 @@ const signin = () => {
           </Text>
           <View style={{ alignItems: "center" }}>
             
-
             <TextInput
               onChangeText={setEmail}
               style={{

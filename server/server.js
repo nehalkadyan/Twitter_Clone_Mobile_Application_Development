@@ -12,22 +12,19 @@ dotenv.config();
 const mongoose = require("mongoose");
 
 // cors
-
 const cors = require("cors")
 // require router
-
 const authRouter = require("./routes/auth.routes");
 
 // app
 const app = express();
 
-const corsOptions = {
-  origin : "http://localhost:8081",
-  methods: ["GET", "POST", "PUT", "DELETE"]
-  
-}
+// const corsOptions = {
+//   origin: "*", // During development, allow all origins
+//   methods: ["GET", "POST", "PUT", "DELETE"]
+// }
 
-app.use(cors(corsOptions))
+app.use(cors())
 app.use(express.json());
 
 // connect to db
@@ -49,7 +46,7 @@ app.use("/api", authRouter);
 
 // create endpoint to store user in db
 
-app.use(express.json());
+
 
 // setup server
 
