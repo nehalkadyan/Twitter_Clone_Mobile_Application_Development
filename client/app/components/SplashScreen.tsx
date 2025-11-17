@@ -3,7 +3,14 @@ import React from "react";
 
 const SplashScreen = () => {
   return (
-    <View style = {{backgroundColor : "black", flex: 1, justifyContent: "center", alignItems : "center"}}>
+    <View
+      style={{
+        backgroundColor: "black",
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <Image
         style={{ height: 140, width: 140 }}
         source={{

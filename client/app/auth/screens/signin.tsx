@@ -1,12 +1,18 @@
 import { View, Text, TextInput, Image, Pressable } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage"
-
-import React, { useState } from "react";
-
+import React, { useState } from "react"
 import axios from "axios";
 import { useRouter } from "expo-router";
+// action
+import { signInSuccessful } from "@/app/redux/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 const signin = () => {
+
+  // dispatch 
+
+  const dispatch = useDispatch()
+  
   // router
   const router = useRouter()
   // states
@@ -30,11 +36,13 @@ const signin = () => {
 
       const token = response.data.token;
 
+      dispatch(signInSuccessful(response.data.user))
+
       // save the token in async storage if token is received
       if(token){
       await AsyncStorage.setItem("access_token", token);
       }
-
+      
       router.replace("/tabs/home_tab")
 
     } catch (err) {

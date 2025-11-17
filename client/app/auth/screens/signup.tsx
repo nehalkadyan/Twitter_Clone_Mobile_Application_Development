@@ -1,14 +1,10 @@
 import { View, Text, TextInput, Image, Pressable } from "react-native";
-
 import React, { useState } from "react";
-
 import axios from "axios";
 import { useRouter } from "expo-router";
 
 const signup = () => {
-
   // router
-
   const router = useRouter()
 
   // states

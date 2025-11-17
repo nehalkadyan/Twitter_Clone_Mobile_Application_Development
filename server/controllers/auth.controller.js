@@ -73,7 +73,9 @@ const signin = async (req, res) => {
 
      console.log(token)
 
-     return res.json({message : "User signed in successfully", user: existingUser, token})
+     const {password :pass, ...rest} = existingUser._doc;
+
+     return res.json({message : "User signed in successfully", user: rest, token})
   }catch(err){
     console.log(err)
   }
