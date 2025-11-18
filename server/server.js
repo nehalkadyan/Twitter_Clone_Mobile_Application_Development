@@ -15,6 +15,7 @@ const mongoose = require("mongoose");
 const cors = require("cors")
 // require router
 const authRouter = require("./routes/auth.routes");
+const tweetRouter = require("./routes/tweet.routes")
 
 // app
 const app = express();
@@ -37,21 +38,18 @@ mongoose
   .catch((err) => console.log(err));
 
 // middleware
-
 app.use("/api", authRouter);
+app.use("/api/tweets", tweetRouter)
 
 // app.get("/hi", (req, res) => {
 //   return res.send("<h1>Hello World!</h1>");
 // });
 
 // create endpoint to store user in db
-
-
-
 // setup server
 
 app.listen(process.env.PORT, () => {
   console.log("Server is running on port 5001");
 });
 
-// auRuIyueQEau4XCH
+
